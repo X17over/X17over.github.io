@@ -2,91 +2,70 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://ze520.cn/comments/index.html</loc>
+    <loc>https://x17over.vercel.app/comments/index.html</loc>
     
     <lastmod>2021-11-23</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ze520.cn/List/gallery/index.html</loc>
+    <loc>https://x17over.vercel.app/List/gallery/index.html</loc>
     
     <lastmod>2021-10-14</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ze520.cn/List/gallery/wallpaper/index.html</loc>
+    <loc>https://x17over.vercel.app/List/gallery/wallpaper/index.html</loc>
     
     <lastmod>2021-10-14</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ze520.cn/List/gallery/ohmygirl/index.html</loc>
+    <loc>https://x17over.vercel.app/List/gallery/ohmygirl/index.html</loc>
     
     <lastmod>2021-09-28</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ze520.cn/posts/1.html</loc>
+    <loc>https://x17over.vercel.app/posts/1.html</loc>
     
     <lastmod>2021-09-07</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ze520.cn/about/index.html</loc>
+    <loc>https://x17over.vercel.app/about/index.html</loc>
     
     <lastmod>2021-08-02</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ze520.cn/link/index.html</loc>
+    <loc>https://x17over.vercel.app/link/index.html</loc>
     
     <lastmod>2021-07-27</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ze520.cn/tags/index.html</loc>
+    <loc>https://x17over.vercel.app/tags/index.html</loc>
     
     <lastmod>2021-07-26</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ze520.cn/categories/index.html</loc>
+    <loc>https://x17over.vercel.app/categories/index.html</loc>
     
     <lastmod>2021-07-26</lastmod>
     
   </url>
   
   <url>
-    <loc>http://ze520.cn/music/index.html</loc>
-    
-    <lastmod>2021-07-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ze520.cn/List/movies/index.html</loc>
-    
-    <lastmod>2021-07-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ze520.cn/List/music/index.html</loc>
-    
-    <lastmod>2021-07-26</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://ze520.cn/archives/index.html</loc>
+    <loc>https://x17over.vercel.app/archives/index.html</loc>
     
     <lastmod>2021-06-27</lastmod>
     
@@ -94,7 +73,7 @@
   
 
   <url>
-    <loc>http://ze520.cn/</loc>
+    <loc>https://x17over.vercel.app/</loc>
     <lastmod>2022-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -102,7 +81,7 @@
 
   
   <url>
-    <loc>http://ze520.cn/tags/%E6%83%B3%E6%B3%95/</loc>
+    <loc>https://x17over.vercel.app/tags/%E6%83%B3%E6%B3%95/</loc>
     <lastmod>2022-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -111,7 +90,7 @@
 
   
   <url>
-    <loc>http://ze520.cn/categories/%E7%94%9F%E6%B4%BB/</loc>
+    <loc>https://x17over.vercel.app/categories/%E7%94%9F%E6%B4%BB/</loc>
     <lastmod>2022-04-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

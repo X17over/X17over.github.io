@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>相近词区别</title>
+      <link href="/posts/d1f58e41.html"/>
+      <url>/posts/d1f58e41.html</url>
+      
+        <content type="html"><![CDATA[<h4 id="isEmpty、isNotEmpty和isBlank、isNotBlank的解释"><a href="#isEmpty、isNotEmpty和isBlank、isNotBlank的解释" class="headerlink" title="isEmpty、isNotEmpty和isBlank、isNotBlank的解释"></a>isEmpty、isNotEmpty和isBlank、isNotBlank的解释</h4><p><strong><em>1、isEmpty 判断某是否为空，为空的标准是 str==null或 str.length()==0</em></strong></p><pre class="line-numbers language-none"><code class="language-none">StringUtils.isEmpty(null) &#x3D; true 　　StringUtils.isEmpty(&quot;&quot;) &#x3D; true 　　　　StringUtils.isEmpty(&quot; &quot;) &#x3D; false&#x2F;&#x2F;注意在 StringUtils 中空格作非空处理  　　　　StringUtils.isEmpty(&quot;   &quot;) &#x3D; false 　　StringUtils.isEmpty(&quot;bob&quot;) &#x3D; false 　　StringUtils.isEmpty(&quot; bob &quot;) &#x3D; false<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><p><strong><em>2.isBlank 判断某字符串是否为空或长度为0或由空白符(whitespace) 构成</em></strong></p><pre class="line-numbers language-none"><code class="language-none">StringUtils.isBlank(null) &#x3D; true 　StringUtils.isBlank(&quot;&quot;) &#x3D; true 　StringUtils.isBlank(&quot; &quot;) &#x3D; true 　　StringUtils.isBlank(&quot; &quot;) &#x3D; true &#x2F;&#x2F;此处isEmpty()是false　　StringUtils.isBlank(&quot;\t \n \f \r&quot;) &#x3D; true   &#x2F;&#x2F;对于制表符、换行符、换页符和回车符  　StringUtils.isBlank()   &#x2F;&#x2F;均识为空白符  　StringUtils.isBlank(&quot;\b&quot;) &#x3D; false   &#x2F;&#x2F;&quot;\b&quot;为单词边界符  　StringUtils.isBlank(&quot;bob&quot;) &#x3D; false 　StringUtils.isBlank(&quot; bob &quot;) &#x3D; false <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><h5 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h5><p><strong>isNotEmpty是isEmpty的相反意思，即： 判断某字符串是否不为空，不为空的标准是 str!=null或 str.length()!=0</strong></p><p><strong>isEmpty(A); 若A为空，返回true；否则返回false;</strong></p><p><strong>isNotEmpty(A); 若A为空，返回false,否则返回true;</strong></p><p><strong>isNotBlank是.isBlank 的相反意思，即： 判断某字符串是否不为空或长度不为0或不由空白符(whitespace) 构成</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>hasnext()用法</title>
       <link href="/posts/d1f58e41.html"/>
       <url>/posts/d1f58e41.html</url>

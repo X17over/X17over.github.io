@@ -2,93 +2,9 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://gadmi.cn/posts/5eaff132.html</loc>
-    
-    <lastmod>2022-05-08</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/d366874c.html</loc>
-    
-    <lastmod>2022-05-08</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/c4d5e200.html</loc>
-    
-    <lastmod>2022-05-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/69e5fcbd.html</loc>
-    
-    <lastmod>2022-05-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/6c92115f.html</loc>
-    
-    <lastmod>2022-05-05</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/80ec54c.html</loc>
-    
-    <lastmod>2022-05-02</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/e5918a.html</loc>
-    
-    <lastmod>2022-04-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/392cfd56.html</loc>
-    
-    <lastmod>2022-04-20</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/a7539ae9.html</loc>
-    
-    <lastmod>2022-04-13</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://gadmi.cn/about/index.html</loc>
     
     <lastmod>2022-04-11</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/d42c402e.html</loc>
-    
-    <lastmod>2022-04-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/d1f58e41.html</loc>
-    
-    <lastmod>2022-04-10</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/posts/2eec1551.html</loc>
-    
-    <lastmod>2022-04-10</lastmod>
     
   </url>
   
@@ -178,41 +94,6 @@
   </url>
 
   
-  <url>
-    <loc>https://gadmi.cn/tags/%E6%A1%86%E6%9E%B6/</loc>
-    <lastmod>2022-05-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/tags/Web/</loc>
-    <lastmod>2022-05-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/tags/Java/</loc>
-    <lastmod>2022-05-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://gadmi.cn/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/</loc>
-    <lastmod>2022-05-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
-  
-  <url>
-    <loc>https://gadmi.cn/categories/%E5%AD%A6%E4%B9%A0/</loc>
-    <lastmod>2022-05-08</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
   
 </urlset>

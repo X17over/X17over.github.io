@@ -1,705 +1,0 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JPA | 傻蛋日常呆</title><meta name="keywords" content="框架"><meta name="author" content="小明童鞋"><meta name="copyright" content="小明童鞋"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JPA和Hibernate的关系JPA（Java Persistence API），是Java EE 5的标准ORM接口，也是ejb3规范的一部分。 Hibernate是之前很流行的ORM框架，也是JPA的一个实现，其它还有Toplink之类的ROM框架。 JPA和Hibernate之间的关系，可以简单的理解为JPA是标准接口，Hibernate是实现。 Hibernate主要是通过三个组件来实现">
-<meta property="og:type" content="article">
-<meta property="og:title" content="JPA">
-<meta property="og:url" content="https://gadmi.cn/posts/392cfd56.html">
-<meta property="og:site_name" content="傻蛋日常呆">
-<meta property="og:description" content="JPA和Hibernate的关系JPA（Java Persistence API），是Java EE 5的标准ORM接口，也是ejb3规范的一部分。 Hibernate是之前很流行的ORM框架，也是JPA的一个实现，其它还有Toplink之类的ROM框架。 JPA和Hibernate之间的关系，可以简单的理解为JPA是标准接口，Hibernate是实现。 Hibernate主要是通过三个组件来实现">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img0.baidu.com/it/u=2862534777,914942650&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500">
-<meta property="article:published_time" content="2022-04-18T12:15:27.097Z">
-<meta property="article:modified_time" content="2022-04-20T13:49:34.142Z">
-<meta property="article:author" content="小明童鞋">
-<meta property="article:tag" content="框架">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img0.baidu.com/it/u=2862534777,914942650&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500"><link rel="shortcut icon" href="https://s1.ax1x.com/2022/04/08/LC1FET.jpg"><link rel="canonical" href="https://gadmi.cn/posts/392cfd56"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
-  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
-  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"一年之内的产物","messageNext":"技术可能存在过期"},
-  highlight: {"plugin":"prismjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '天',
-  date_suffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: {"limitCount":50,"languages":{"author":"作者: 小明童鞋","link":"链接: ","source":"来源: 傻蛋日常呆","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  source: {
-    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
-    justifiedGallery: {
-      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
-      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
-    },
-    fancybox: {
-      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js',
-      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css'
-    }
-  },
-  isPhotoFigcaption: true,
-  islazyload: true,
-  isanchor: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
-  title: 'JPA',
-  isPost: true,
-  isHome: false,
-  isHighlightShrink: false,
-  isToc: true,
-  postUpdate: '2022-04-20 21:49:34'
-}</script><noscript><style type="text/css">
-  #nav {
-    opacity: 1
-  }
-  .justified-gallery img {
-    opacity: 1
-  }
-
-  #recent-posts time,
-  #post-meta time {
-    display: inline !important
-  }
-</style></noscript><script>(win=>{
-    win.saveToLocal = {
-      set: function setWithExpiry(key, value, ttl) {
-        if (ttl === 0) return
-        const now = new Date()
-        const expiryDay = ttl * 86400000
-        const item = {
-          value: value,
-          expiry: now.getTime() + expiryDay,
-        }
-        localStorage.setItem(key, JSON.stringify(item))
-      },
-
-      get: function getWithExpiry(key) {
-        const itemStr = localStorage.getItem(key)
-
-        if (!itemStr) {
-          return undefined
-        }
-        const item = JSON.parse(itemStr)
-        const now = new Date()
-
-        if (now.getTime() > item.expiry) {
-          localStorage.removeItem(key)
-          return undefined
-        }
-        return item.value
-      }
-    }
-  
-    win.getScript = url => new Promise((resolve, reject) => {
-      const script = document.createElement('script')
-      script.src = url
-      script.async = true
-      script.onerror = reject
-      script.onload = script.onreadystatechange = function() {
-        const loadState = this.readyState
-        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-        script.onload = script.onreadystatechange = null
-        resolve()
-      }
-      document.head.appendChild(script)
-    })
-  
-      win.activateDarkMode = function () {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = function () {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-          if (t === 'dark') activateDarkMode()
-          else if (t === 'light') activateLightMode()
-        
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-    const detectApple = () => {
-      if (GLOBAL_CONFIG_SITE.isHome && /iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-        document.documentElement.classList.add('apple')
-      }
-    }
-    detectApple()
-    document.addEventListener('pjax:complete', detectApple)})(window)</script><link defer rel="stylesheet" href="/css/customm.css" ><link defer rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/css/icon.css"><link defer rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"><link defer rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/css/background.css"><link defer rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/css/index_ee.css"><meta name="generator" content="Hexo 5.2.0">
-<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
-<link rel="alternate" href="/atom.xml" title="傻蛋日常呆" type="application/atom+xml">
-</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://s1.ax1x.com/2022/04/08/LC1FET.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img0.baidu.com/it/u=2862534777,914942650&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=889&amp;h=500')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">傻蛋日常呆</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-heart"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">JPA</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-04-18T12:15:27.097Z" title="发表于 2022-04-18 20:15:27">2022-04-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-04-20T13:49:34.142Z" title="更新于 2022-04-20 21:49:34">2022-04-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JPA"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="JPA和Hibernate的关系"><a href="#JPA和Hibernate的关系" class="headerlink" title="JPA和Hibernate的关系"></a>JPA和Hibernate的关系</h1><p>JPA（Java Persistence <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=API&spm=1001.2101.3001.7020">API</a>），是Java EE 5的标准ORM接口，也是ejb3规范的一部分。</p>
-<p><a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=Hibernate&spm=1001.2101.3001.7020">Hibernate</a>是之前很流行的ORM框架，也是JPA的一个实现，其它还有Toplink之类的ROM框架。</p>
-<p>JPA和Hibernate之间的关系，可以简单的理解为JPA是标准接口，Hibernate是实现。</p>
-<p>Hibernate主要是通过三个组件来实现的：</p>
-<ul>
-<li>hibernate-core：Hibernate的核心实现，提供了Hibernate所有的核心功能。 </li>
-<li>hibernate-entitymanager：Hibernate实现了标准的JPA，可以把它看成hibernate-core和JPA之间的适配器，它并不直接提供ORM的功能，而是对hibernate-core进行封装，使得Hibernate符合JPA的规范。 </li>
-<li>hibernate-annotation：Hibernate支持annotation方式配置的基础，它包括了标准的JPA annotation以及Hibernate自身特殊功能的annotation。</li>
-</ul>
-<h1 id="Entity"><a href="#Entity" class="headerlink" title="Entity"></a>Entity</h1><p>@Entity说明这个class是实体类，并且使用默认的<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=orm&spm=1001.2101.3001.7020">orm</a>规则，即class名对应数据库表中表名，class字段名即表中的字段名。<br>（如果想改变这种默认的orm规则，就要使用@Table来改变class名与数据库中表名的映射规则，@Column来改变class中字段名与db中表的字段名的映射规则）</p>
-<p>元数据属性说明：<br>• name: 表名</p>
-<p>下面的代码说明,Customer类对应数据库中的Customer表，其中name为可选，缺省类名即表名！</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span><span class="token punctuation">(</span>name<span class="token operator">=</span>”<span class="token class-name">Customer</span>”<span class="token punctuation">)</span>
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Customer</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-
-<h1 id="Table"><a href="#Table" class="headerlink" title="Table"></a>Table</h1><p>Table用来定义entity主表的name，catalog，schema等属性。</p>
-<p>元数据属性说明：<br>• name: 表名<br>• catalog: 对应关系数据库中的catalog<br>• schema：对应关系数据库中的schema<br>• UniqueConstraints:定义一个UniqueConstraint数组，指定需要建唯一约束的列</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
-
-<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUST"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Customer</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="SecondaryTable"><a href="#SecondaryTable" class="headerlink" title="SecondaryTable"></a>SecondaryTable</h1><p>一个entity class可以映射到多表，SecondaryTable用来定义单个从表的名字，主键名字等属性。</p>
-<p>元数据属性说明：<br>• name: 表名<br>• catalog: 对应关系数据库中的catalog<br>• schema：对应关系数据库中的schema<br>• pkJoin: 定义一个PrimaryKeyJoinColumn数组，指定从表的主键列<br>• UniqueConstraints: 定义一个UniqueConstraint数组，指定需要建唯一约束的列</p>
-<p>下面的代码说明Customer类映射到两个表，主表名是CUSTOMER，从表名是CUST_DETAIL，从表的主键列和主表的主键列类型相同，列名为CUST_ID。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
-
-<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUSTOMER"</span><span class="token punctuation">)</span>
-<span class="token annotation punctuation">@SecondaryTable</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUST_DETAIL"</span><span class="token punctuation">,</span>pkJoin<span class="token operator">=</span><span class="token annotation punctuation">@PrimaryKeyJoinColumn</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUST_ID"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Customer</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="SecondaryTables"><a href="#SecondaryTables" class="headerlink" title="SecondaryTables"></a>SecondaryTables</h1><p>当一个entity class映射到一个主表和多个从表时，用SecondaryTables来定义各个从表的属性。</p>
-<p>元数据属性说明：<br>• value： 定义一个SecondaryTable数组，指定每个从表的属性。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"CUSTOMER"</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@SecondaryTables</span><span class="token punctuation">(</span> value <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-
-<span class="token annotation punctuation">@SecondaryTable</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"CUST_NAME"</span><span class="token punctuation">,</span> pkJoin <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token annotation punctuation">@PrimaryKeyJoinColumn</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"STMO_ID"</span><span class="token punctuation">,</span> referencedColumnName <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-
-<span class="token annotation punctuation">@SecondaryTable</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"CUST_ADDRESS"</span><span class="token punctuation">,</span> pkJoin <span class="token operator">=</span> <span class="token punctuation">&#123;</span> <span class="token annotation punctuation">@PrimaryKeyJoinColumn</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"STMO_ID"</span><span class="token punctuation">,</span> referencedColumnName <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span> <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Customer</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="UniqueConstraint"><a href="#UniqueConstraint" class="headerlink" title="UniqueConstraint"></a>UniqueConstraint</h1><p>UniqueConstraint定义在Table或SecondaryTable元数据里，用来指定建表时需要建唯一约束的列。</p>
-<p>元数据属性说明：<br>• columnNames:定义一个字符串数组，指定要建唯一约束的列名。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
-
-<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"EMPLOYEE"</span><span class="token punctuation">,</span>
-
-    uniqueConstraints<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token annotation punctuation">@UniqueConstraint</span><span class="token punctuation">(</span>columnNames<span class="token operator">=</span><span class="token punctuation">&#123;</span><span class="token string">"EMP_ID"</span><span class="token punctuation">,</span> <span class="token string">"EMP_NAME"</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="Column"><a href="#Column" class="headerlink" title="Column"></a>Column</h1><p>Column元数据定义了映射到数据库的列的所有属性：列名，是否唯一，是否允许为空，是否允许更新等。</p>
-<p>元数据属性说明：<br>• name:列名。<br>• unique: 是否唯一<br>• nullable: 是否允许为空<br>• insertable: 是否允许插入<br>• updatable: 是否允许更新<br>• columnDefinition: 定义建表时创建此列的DDL<br>• secondaryTable: 从表名。如果此列不建在主表上（默认建在主表），该属性定义该列所在从表的名字。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">&#123;</span>
-
-<span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"PERSONNAME"</span><span class="token punctuation">,</span> unique <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">,</span> nullable <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">,</span> updatable <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
-
-<span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"PHOTO"</span><span class="token punctuation">,</span> columnDefinition <span class="token operator">=</span> <span class="token string">"BLOB NOT NULL"</span><span class="token punctuation">,</span> secondaryTable<span class="token operator">=</span><span class="token string">"PER_PHOTO"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">private</span> <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> picture<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="OneToOne"><a href="#OneToOne" class="headerlink" title="OneToOne"></a>OneToOne</h1><p>@OneToOne描述一个 一对一的关联</p>
-<p>元数据属性说明：<br>• fetch：表示抓取策略，默认为FetchType.LAZY<br>• cascade：表示级联操作策略</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@OneToOne</span><span class="token punctuation">(</span>fetch<span class="token operator">=</span><span class="token class-name">FetchType</span><span class="token punctuation">,</span>cascade<span class="token operator">=</span><span class="token class-name">CascadeType</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h1 id="ManyToOne"><a href="#ManyToOne" class="headerlink" title="ManyToOne"></a>ManyToOne</h1><p>@ManyToOne表示一个多对一的映射,该注解标注的属性通常是数据库表的外键.</p>
-<p>元数据属性说明：<br>• optional：是否允许该字段为null，该属性应该根据数据库表的外键约束来确定，默认为true<br>• fetch：表示抓取策略，默认为FetchType.EAGER<br>• cascade：表示默认的级联操作策略，可以指定为ALL，PERSIST，MERGE，REFRESH和REMOVE中的若干组合，默认为无级联操作<br>• targetEntity：表示该属性关联的实体类型。该属性通常不必指定，ORM框架根据属性类型自动判断targetEntity。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@ManyToOne</span><span class="token punctuation">(</span>fetch<span class="token operator">=</span><span class="token class-name">FetchType</span><span class="token punctuation">,</span>cascade<span class="token operator">=</span><span class="token class-name">CascadeType</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="OneToMany"><a href="#OneToMany" class="headerlink" title="OneToMany"></a>OneToMany</h1><p>@OneToMany描述一个 一对多的关联,该属性应该为集体类型,在数据库中并没有实际字段。</p>
-<p>元数据属性说明：<br>• fetch：表示抓取策略,默认为FetchType.LAZY,因为关联的多个对象通常不必从数据库预先读取到内存<br>• cascade：表示级联操作策略,对于OneToMany类型的关联非常重要,通常该实体更新或删除时,其关联的实体也应当被更新或删除</p>
-<p>例如：<br>实体User和Order是OneToMany的关系，则实体User被删除时，其关联的实体Order也应该被全部删除</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@OneToMany</span><span class="token punctuation">(</span>fetch<span class="token operator">=</span><span class="token class-name">FetchType</span><span class="token punctuation">,</span>cascade<span class="token operator">=</span><span class="token class-name">CascadeType</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h1 id="ManyToMany"><a href="#ManyToMany" class="headerlink" title="ManyToMany"></a>ManyToMany</h1><p>@ManyToMany 描述一个多对多的关联.多对多关联上是两个一对多关联,但是在ManyToMany描述中,中间表是由ORM框架自动处理</p>
-<p>元数据属性说明：<br>• targetEntity:表示多对多关联的另一个实体类的全名,例如:package.Book.class<br>• mappedBy:表示多对多关联的另一个实体类的对应集合属性名称</p>
-<p>两个实体间相互关联的属性必须标记为@ManyToMany,并相互指定targetEntity属性,<br>需要注意的是,有且只有一个实体的@ManyToMany注解需要指定mappedBy属性,指向targetEntity的集合属性名称<br>利用ORM工具自动生成的表除了User和Book表外,还自动生成了一个User_Book表,用于实现多对多关联</p>
-<h1 id="JoinColumn"><a href="#JoinColumn" class="headerlink" title="JoinColumn"></a>JoinColumn</h1><p>如果在entity class的field上定义了关系（one2one或one2many等），我们通过JoinColumn来定义关系的属性。JoinColumn的大部分属性和Column类似。</p>
-<p>元数据属性说明：<br>• name:列名。<br>• referencedColumnName:该列指向列的列名（建表时该列作为外键列指向关系另一端的指定列）<br>• unique: 是否唯一<br>• nullable: 是否允许为空<br>• insertable: 是否允许插入<br>• updatable: 是否允许更新<br>• columnDefinition: 定义建表时创建此列的DDL<br>• secondaryTable: 从表名。如果此列不建在主表上（默认建在主表），该属性定义该列所在从表的名字。</p>
-<p>下面的代码说明Custom和Order是一对一关系。在Order对应的映射表建一个名为CUST_ID的列，该列作为外键指向Custom对应表中名为ID的列。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Custom</span> <span class="token punctuation">&#123;</span>
-
-<span class="token annotation punctuation">@OneToOne</span>
-
-<span class="token annotation punctuation">@JoinColumn</span><span class="token punctuation">(</span>
-
-name<span class="token operator">=</span><span class="token string">"CUST_ID"</span><span class="token punctuation">,</span> referencedColumnName<span class="token operator">=</span><span class="token string">"ID"</span><span class="token punctuation">,</span> unique<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">,</span> nullable<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">,</span> updatable<span class="token operator">=</span><span class="token boolean">true</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> order <span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-
-    <span class="token keyword">return</span> order<span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="JoinColumns"><a href="#JoinColumns" class="headerlink" title="JoinColumns"></a>JoinColumns</h1><p>如果在entity class的field上定义了关系（one2one或one2many等），并且关系存在多个JoinColumn，用JoinColumns定义多个JoinColumn的属性。</p>
-<p>元数据属性说明：<br>• value: 定义JoinColumn数组，指定每个JoinColumn的属性。</p>
-<p>下面的代码说明Custom和Order是一对一关系。在Order对应的映射表建两列，一列名为CUST_ID，该列作为外键指向Custom对应表中名为ID的列,另一列名为CUST_NAME，该列作为外键指向Custom对应表中名为NAME的列。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">   <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Custom</span> <span class="token punctuation">&#123;</span>
-
-   <span class="token annotation punctuation">@OneToOne</span>
-
-   <span class="token annotation punctuation">@JoinColumns</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-
-<span class="token annotation punctuation">@JoinColumn</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUST_ID"</span><span class="token punctuation">,</span> referencedColumnName<span class="token operator">=</span><span class="token string">"ID"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-
-   <span class="token annotation punctuation">@JoinColumn</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUST_NAME"</span><span class="token punctuation">,</span> referencedColumnName<span class="token operator">=</span><span class="token string">"NAME"</span><span class="token punctuation">)</span>
-
-   <span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-   
-   <span class="token keyword">public</span> order <span class="token function">getOrder</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-
-       <span class="token keyword">return</span> order<span class="token punctuation">;</span>
-       
-   <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<p>声明当前field为映射表中的主键列。<br>id值的获取方式有五种：TABLE, SEQUENCE, IDENTITY, AUTO, NONE。<br>Oracle和DB2支持SEQUENCE，SQL Server和Sybase支持IDENTITY,MySQL支持AUTO。<br>所有的数据库都可以指定为AUTO，我们会根据不同数据库做转换。<br>NONE (默认)需要用户自己指定Id的值。</p>
-<p>元数据属性说明：<br>• generate():主键值的获取类型<br>• generator():TableGenerator的名字（当generate=GeneratorType.TABLE才需要指定该属性）</p>
-<p>下面的代码声明Task的主键列id是自动增长的。(Oracle和DB2从默认的SEQUENCE取值，SQL Server和Sybase该列建成IDENTITY，mysql该列建成auto increment。)</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
-
-<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"OTASK"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Task</span> <span class="token punctuation">&#123;</span>
-
-  <span class="token annotation punctuation">@Id</span><span class="token punctuation">(</span>generate <span class="token operator">=</span> <span class="token class-name">GeneratorType</span><span class="token punctuation">.</span>AUTO<span class="token punctuation">)</span>
-
-  <span class="token keyword">public</span> <span class="token class-name">Integer</span> <span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-
-      <span class="token keyword">return</span> id<span class="token punctuation">;</span>
-
-  <span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="IdClass"><a href="#IdClass" class="headerlink" title="IdClass"></a>IdClass</h1><p>当entity class使用复合主键时，需要定义一个类作为id class。<br>id class必须符合以下要求:<br>类必须声明为public，并提供一个声明为public的空构造函数。<br>必须实现Serializable接口，覆写 equals() 和 hashCode()方法。<br>entity class的所有id field在id class都要定义，且类型一样。</p>
-<p>元数据属性说明：<br>• value: id class的类名</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EmployeePK</span> <span class="token keyword">implements</span> java<span class="token punctuation">.</span>io<span class="token punctuation">.</span><span class="token class-name">Serializable</span><span class="token punctuation">&#123;</span>
-   
-   <span class="token class-name">String</span> empName<span class="token punctuation">;</span>
-
-   <span class="token class-name">Integer</span> empAge<span class="token punctuation">;</span>
-
-   <span class="token keyword">public</span> <span class="token class-name">EmployeePK</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span>
-
-   <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">equals</span><span class="token punctuation">(</span><span class="token class-name">Object</span> obj<span class="token punctuation">)</span><span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">&#125;</span>
-
-   <span class="token keyword">public</span> <span class="token keyword">int</span> <span class="token function">hashCode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span>
-
-<span class="token annotation punctuation">@IdClass</span><span class="token punctuation">(</span>value<span class="token operator">=</span>com<span class="token punctuation">.</span>acme<span class="token punctuation">.</span><span class="token class-name">EmployeePK</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@Entity</span><span class="token punctuation">(</span>access<span class="token operator">=</span>FIELD<span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">&#123;</span>
-
-    <span class="token annotation punctuation">@Id</span> <span class="token class-name">String</span> empName<span class="token punctuation">;</span>
-    <span class="token annotation punctuation">@Id</span> <span class="token class-name">Integer</span> empAge<span class="token punctuation">;</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="MapKey"><a href="#MapKey" class="headerlink" title="MapKey"></a>MapKey</h1><p>在一对多，多对多关系中，我们可以用Map来保存集合对象。默认用主键值做key，如果使用复合主键，则用id class的实例做key，如果指定了name属性，就用指定的field的值做key。</p>
-<p>元数据属性说明：<br>• name: 用来做key的field名字</p>
-<p>下面的代码说明Person和Book之间是一对多关系。Person的books字段是Map类型，用Book的isbn字段的值作为Map的key。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"PERSON"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">&#123;</span>
-
-<span class="token annotation punctuation">@OneToMany</span><span class="token punctuation">(</span>targetEntity <span class="token operator">=</span> <span class="token class-name">Book</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> cascade <span class="token operator">=</span> <span class="token class-name">CascadeType</span><span class="token punctuation">.</span>ALL<span class="token punctuation">,</span> mappedBy <span class="token operator">=</span> <span class="token string">"person"</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@MapKey</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"isbn"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">private</span> <span class="token class-name">Map</span> books <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="OrderBy"><a href="#OrderBy" class="headerlink" title="OrderBy"></a>OrderBy</h1><p>在一对多，多对多关系中，有时我们希望从数据库加载出来的集合对象是按一定方式排序的，这可以通过OrderBy来实现，默认是按对象的主键升序排列。</p>
-<p>元数据属性说明：<br>• value: 字符串类型，指定排序方式。<br>格式为”fieldName1 [ASC|DESC],fieldName2 [ASC|DESC],……”,排序类型可以不指定，默认是ASC。</p>
-<p>下面的代码说明Person和Book之间是一对多关系。集合books按照Book的isbn升序，name降序排列。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"MAPKEY_PERSON"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Person</span> <span class="token punctuation">&#123;</span>
-
-<span class="token annotation punctuation">@OneToMany</span><span class="token punctuation">(</span>targetEntity <span class="token operator">=</span> <span class="token class-name">Book</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> cascade <span class="token operator">=</span> <span class="token class-name">CascadeType</span><span class="token punctuation">.</span>ALL<span class="token punctuation">,</span> mappedBy <span class="token operator">=</span> <span class="token string">"person"</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@OrderBy</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"isbn ASC, name DESC"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">private</span> <span class="token class-name">List</span> books <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="PrimaryKeyJoinColumn"><a href="#PrimaryKeyJoinColumn" class="headerlink" title="PrimaryKeyJoinColumn"></a>PrimaryKeyJoinColumn</h1><p>在三种情况下会用到PrimaryKeyJoinColumn。<br>• 继承。<br>• entity class映射到一个或多个从表。从表根据主表的主键列（列名为referencedColumnName值的列），建立一个类型一样的主键列，列名由name属性定义。<br>• one2one关系，关系维护端的主键作为外键指向关系被维护端的主键，不再新建一个外键列。</p>
-<p>元数据属性说明：<br>• name:列名。<br>• referencedColumnName:该列引用列的列名<br>• columnDefinition: 定义建表时创建此列的DDL</p>
-<p>下面的代码说明Customer映射到两个表，主表CUSTOMER,从表CUST_DETAIL，从表需要建立主键列CUST_ID，该列和主表的主键列id除了列名不同，其他定义一样。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
-
-<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUSTOMER"</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@SecondaryTable</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUST_DETAIL"</span><span class="token punctuation">,</span>pkJoin<span class="token operator">=</span><span class="token annotation punctuation">@PrimaryKeyJoinColumn</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUST_ID"</span>，referencedColumnName<span class="token operator">=</span><span class="token string">"id"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Customer</span> <span class="token punctuation">&#123;</span> 
-
- <span class="token annotation punctuation">@Id</span><span class="token punctuation">(</span>generate <span class="token operator">=</span> <span class="token class-name">GeneratorType</span><span class="token punctuation">.</span>AUTO<span class="token punctuation">)</span>
-
-  <span class="token keyword">public</span> <span class="token class-name">Integer</span> <span class="token function">getId</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-
-      <span class="token keyword">return</span> id<span class="token punctuation">;</span>
-
-  <span class="token punctuation">&#125;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<p>下面的代码说明Employee和EmployeeInfo是一对一关系，Employee的主键列id作为外键指向EmployeeInfo的主键列INFO_ID。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"Employee"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">&#123;</span>
-
-<span class="token annotation punctuation">@OneToOne</span>
-
-<span class="token annotation punctuation">@PrimaryKeyJoinColumn</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"id"</span><span class="token punctuation">,</span> referencedColumnName<span class="token operator">=</span><span class="token string">"INFO_ID"</span><span class="token punctuation">)</span>
-
-<span class="token class-name">EmployeeInfo</span> info<span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="PrimaryKeyJoinColumns"><a href="#PrimaryKeyJoinColumns" class="headerlink" title="PrimaryKeyJoinColumns"></a>PrimaryKeyJoinColumns</h1><p>如果entity class使用了复合主键，指定单个PrimaryKeyJoinColumn不能满足要求时，可以用PrimaryKeyJoinColumns来定义多个PrimaryKeyJoinColumn。</p>
-<p>元数据属性说明：<br>• value: 一个PrimaryKeyJoinColumn数组，包含所有PrimaryKeyJoinColumn。</p>
-<p>下面的代码说明了Employee和EmployeeInfo是一对一关系。他们都使用复合主键，建表时需要在Employee表建立一个外键，从Employee的主键列id,name指向EmployeeInfo的主键列INFO_ID和INFO_NAME.</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
-
-<span class="token annotation punctuation">@IdClass</span><span class="token punctuation">(</span><span class="token class-name">EmpPK</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"EMPLOYEE"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">&#123;</span>
-
- <span class="token keyword">private</span> <span class="token keyword">int</span> id<span class="token punctuation">;</span>
-
- <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
-
- <span class="token keyword">private</span> <span class="token class-name">String</span> address<span class="token punctuation">;</span>
-
- <span class="token annotation punctuation">@OneToOne</span><span class="token punctuation">(</span>cascade <span class="token operator">=</span> <span class="token class-name">CascadeType</span><span class="token punctuation">.</span>ALL<span class="token punctuation">)</span>
-
- <span class="token annotation punctuation">@PrimaryKeyJoinColumns</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>
-
- <span class="token annotation punctuation">@PrimaryKeyJoinColumn</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"id"</span><span class="token punctuation">,</span> referencedColumnName<span class="token operator">=</span><span class="token string">"INFO_ID"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-
- <span class="token annotation punctuation">@PrimaryKeyJoinColumn</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"name"</span> <span class="token punctuation">,</span> referencedColumnName<span class="token operator">=</span><span class="token string">"INFO_NAME"</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-
- <span class="token class-name">EmployeeInfo</span> info<span class="token punctuation">;</span>
-
- <span class="token punctuation">&#125;</span>
-
- <span class="token annotation punctuation">@Entity</span>
-
- <span class="token annotation punctuation">@IdClass</span><span class="token punctuation">(</span><span class="token class-name">EmpPK</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
-
- <span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"EMPLOYEE_INFO"</span><span class="token punctuation">)</span>
-
- <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">EmployeeInfo</span> <span class="token punctuation">&#123;</span>
-
- <span class="token annotation punctuation">@Id</span>
-
- <span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"INFO_ID"</span><span class="token punctuation">)</span>
-
- <span class="token keyword">private</span> <span class="token keyword">int</span> id<span class="token punctuation">;</span>
-
- <span class="token annotation punctuation">@Id</span>
-
- <span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"INFO_NAME"</span><span class="token punctuation">)</span>
-
- <span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span>
-
- <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="Transient"><a href="#Transient" class="headerlink" title="Transient"></a>Transient</h1><p>@Transient表示该属性并不是一个到数据库表的字段的映射，指定的这些属性不会被持久化，ORM框架将忽略该属性。<br>如果一个属性并非数据库表的字段映射。就务必将其标示为@Transient。否则，ORM框架默认其注解为@Basic</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Transient</span>
-
-<span class="token keyword">private</span> <span class="token class-name">String</span> name<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="Version"><a href="#Version" class="headerlink" title="Version"></a>Version</h1><p>Version指定实体类在乐观事务中的version属性。在实体类重新由EntityManager管理并且加入到乐观事务中时，保证完整性。每一个类只能有一个属性被指定为version，version属性应该映射到实体类的主表上。</p>
-<p>下面的代码说明versionNum属性作为这个类的version，映射到数据库中主表的列名是OPTLOCK。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Version</span>
-
-<span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span><span class="token string">"OPTLOCK"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">protected</span> <span class="token keyword">int</span> <span class="token function">getVersionNum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token keyword">return</span> versionNum<span class="token punctuation">;</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="Lob"><a href="#Lob" class="headerlink" title="Lob"></a>Lob</h1><p>Lob指定一个属性作为数据库支持的大对象类型在数据库中存储。使用LobType这个枚举来定义Lob是二进制类型还是字符类型。</p>
-<p>LobType枚举类型说明：<br>• BLOB 二进制大对象，Byte[]或者Serializable的类型可以指定为BLOB。<br>• CLOB 字符型大对象，char[]、Character[]或String类型可以指定为CLOB。</p>
-<p>元数据属性说明：<br>• fetch： 定义这个字段是lazy loaded还是eagerly fetched。数据类型是FetchType枚举，默认为LAZY,即lazy loaded.<br>• type： 定义这个字段在数据库中的JDBC数据类型。数据类型是LobType枚举，默认为BLOB。</p>
-<p>下面的代码定义了一个BLOB类型的属性和一个CLOB类型的属性。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Lob</span>
-
-<span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"PHOTO"</span> columnDefinition<span class="token operator">=</span><span class="token string">"BLOB NOT NULL"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">protected</span> <span class="token class-name">JPEGImage</span> picture<span class="token punctuation">;</span>
-
-<span class="token annotation punctuation">@Lob</span><span class="token punctuation">(</span>fetch<span class="token operator">=</span>EAGER<span class="token punctuation">,</span> type<span class="token operator">=</span>CLOB<span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@Column</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"REPORT"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">protected</span> <span class="token class-name">String</span> report<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="JoinTable"><a href="#JoinTable" class="headerlink" title="JoinTable"></a>JoinTable</h1><p>JoinTable在many-to-many关系的所有者一边定义。如果没有定义JoinTable，使用JoinTable的默认值。</p>
-<p>元数据属性说明：<br>• table:这个join table的Table定义。<br>• joinColumns:定义指向所有者主表的外键列，数据类型是JoinColumn数组。<br>• inverseJoinColumns:定义指向非所有者主表的外键列，数据类型是JoinColumn数组。</p>
-<p>下面的代码定义了一个连接表CUST和PHONE的join table。join table的表名是CUST_PHONE，包含两个外键，一个外键是CUST_ID，指向表CUST的主键ID，另一个外键是PHONE_ID，指向表PHONE的主键ID。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@JoinTable</span><span class="token punctuation">(</span>
-
-table<span class="token operator">=</span><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span>CUST_PHONE<span class="token punctuation">)</span><span class="token punctuation">,</span>
-
-joinColumns<span class="token operator">=</span><span class="token annotation punctuation">@JoinColumn</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUST_ID"</span><span class="token punctuation">,</span> referencedColumnName<span class="token operator">=</span><span class="token string">"ID"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-
-inverseJoinColumns<span class="token operator">=</span><span class="token annotation punctuation">@JoinColumn</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"PHONE_ID"</span><span class="token punctuation">,</span> referencedColumnName<span class="token operator">=</span><span class="token string">"ID"</span><span class="token punctuation">)</span>
-
-<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="TableGenerator"><a href="#TableGenerator" class="headerlink" title="TableGenerator"></a>TableGenerator</h1><p>TableGenerator定义一个主键值生成器，在Id这个元数据的generate＝TABLE时，generator属性中可以使用生成器的名字。生成器可以在类、方法或者属性上定义。<br>生成器是为多个实体类提供连续的ID值的表，每一行为一个类提供ID值，ID值通常是整数。</p>
-<p>元数据属性说明：<br>• name:生成器的唯一名字，可以被Id元数据使用。<br>• table:生成器用来存储id值的Table定义。<br>• pkColumnName:生成器表的主键名称。<br>• valueColumnName:生成器表的ID值的列名称。<br>• pkColumnValue:生成器表中的一行数据的主键值。<br>• initialValue:id值的初始值。<br>• allocationSize:id值的增量。</p>
-<p>下面的代码定义了两个生成器empGen和addressGen，生成器的表是ID_GEN。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Employee</span> <span class="token punctuation">&#123;</span>
-
-<span class="token annotation punctuation">@TableGenerator</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"empGen"</span><span class="token punctuation">,</span>
-
-table<span class="token operator">=</span><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"ID_GEN"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-
-pkColumnName<span class="token operator">=</span><span class="token string">"GEN_KEY"</span><span class="token punctuation">,</span>
-
-valueColumnName<span class="token operator">=</span><span class="token string">"GEN_VALUE"</span><span class="token punctuation">,</span>
-
-pkColumnValue<span class="token operator">=</span><span class="token string">"EMP_ID"</span><span class="token punctuation">,</span>
-
-allocationSize<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@Id</span><span class="token punctuation">(</span>generate<span class="token operator">=</span>TABLE<span class="token punctuation">,</span> generator<span class="token operator">=</span><span class="token string">"empGen"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">int</span> id<span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span>
-
-<span class="token annotation punctuation">@Entity</span> 
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Address</span> <span class="token punctuation">&#123;</span>
-
-<span class="token annotation punctuation">@TableGenerator</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"addressGen"</span><span class="token punctuation">,</span>
-
-table<span class="token operator">=</span><span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"ID_GEN"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-
-pkColumnValue<span class="token operator">=</span><span class="token string">"ADDR_ID"</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@Id</span><span class="token punctuation">(</span>generate<span class="token operator">=</span>TABLE<span class="token punctuation">,</span> generator<span class="token operator">=</span><span class="token string">"addressGen"</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">int</span> id<span class="token punctuation">;</span>
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="SequenceGenerator"><a href="#SequenceGenerator" class="headerlink" title="SequenceGenerator"></a>SequenceGenerator</h1><p>SequenceGenerator定义一个主键值生成器，在Id这个元数据的generator属性中可以使用生成器的名字。生成器可以在类、方法或者属性上定义。生成器是数据库支持的sequence对象。</p>
-<p>元数据属性说明：<br>• name:生成器的唯一名字，可以被Id元数据使用。<br>• sequenceName:数据库中，sequence对象的名称。如果不指定，会使用提供商指定的默认名称。<br>• initialValue:id值的初始值。<br>• allocationSize:id值的增量。</p>
-<p>下面的代码定义了一个使用提供商默认名称的sequence生成器。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@SequenceGenerator</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"EMP_SEQ"</span><span class="token punctuation">,</span> allocationSize<span class="token operator">=</span><span class="token number">25</span><span class="token punctuation">)</span>   <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-<h1 id="DiscriminatorColumn"><a href="#DiscriminatorColumn" class="headerlink" title="DiscriminatorColumn"></a>DiscriminatorColumn</h1><p>DiscriminatorColumn定义在使用SINGLE_TABLE或JOINED继承策略的表中区别不继承层次的列。</p>
-<p>元数据属性说明：<br>• name:column的名字。默认值为TYPE。<br>• columnDefinition:生成DDL的sql片断。<br>• length:String类型的column的长度，其他类型使用默认值10。</p>
-<p>下面的代码定义了一个列名为DISC，长度为20的String类型的区别列。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java"><span class="token annotation punctuation">@Entity</span>
-
-<span class="token annotation punctuation">@Table</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"CUST"</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@Inheritance</span><span class="token punctuation">(</span>strategy<span class="token operator">=</span>SINGLE_TABLE<span class="token punctuation">,</span>
-
-    discriminatorType<span class="token operator">=</span>STRING<span class="token punctuation">,</span>
-
-   discriminatorValue<span class="token operator">=</span><span class="token string">"CUSTOMER"</span><span class="token punctuation">)</span>
-
-<span class="token annotation punctuation">@DiscriminatorColumn</span><span class="token punctuation">(</span>name<span class="token operator">=</span><span class="token string">"DISC"</span><span class="token punctuation">,</span> length<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span>
-
-<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">Customer</span> <span class="token punctuation">&#123;</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h1 id="Hibernate验证注解"><a href="#Hibernate验证注解" class="headerlink" title="Hibernate验证注解"></a>Hibernate验证注解</h1><p><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="../Blog/source/_posts/image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lpeWVsYW54aW4=,size_16,color_FFFFFF,t_70.png" alt="img"><br>以上每个注解都可能性有一个message属性，用于在验证失败后向用户返回的消息</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="JoinColumn-1"><a href="#JoinColumn-1" class="headerlink" title="@JoinColumn"></a>@JoinColumn</h2><p>@OneToOne注释只能确定实体与实体的关系是一对一的关系，不能指定数据库表中的保存的关联字段。所以此时要结合@JoinColumn标记来指定保存实体关系的配置。   </p>
-<p>@JoinColumn与本书上一章讲述的@Column注释类似，它的定义如下代码所示。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">  <span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token punctuation">&#123;</span>METHOD<span class="token punctuation">,</span> FIELD<span class="token punctuation">&#125;</span><span class="token punctuation">)</span>
-
- <span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span>RUNTIME<span class="token punctuation">)</span> 
-
-  <span class="token class-name">String</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">;</span>   
-
-  <span class="token class-name">String</span> <span class="token function">referencedColumnName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">;</span> 
-
-    <span class="token keyword">boolean</span> <span class="token function">unique</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token boolean">false</span><span class="token punctuation">;</span>   
-
-    <span class="token keyword">boolean</span> <span class="token function">nullable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token boolean">true</span><span class="token punctuation">;</span> 
-
-      <span class="token keyword">boolean</span> <span class="token function">insertable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token boolean">true</span><span class="token punctuation">;</span> 
-
-        <span class="token keyword">boolean</span> <span class="token function">updatable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token boolean">true</span><span class="token punctuation">;</span>   
-
-        <span class="token class-name">String</span> <span class="token function">columnDefinition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">;</span> 
-
-          <span class="token class-name">String</span> <span class="token function">table</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">default</span> <span class="token string">""</span><span class="token punctuation">;</span>   
-
-          <span class="token punctuation">&#125;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="在使用-JoinColumn注释时，应注意以下几个问题："><a href="#在使用-JoinColumn注释时，应注意以下几个问题：" class="headerlink" title="在使用@JoinColumn注释时，应注意以下几个问题："></a>在使用@JoinColumn注释时，应注意以下几个问题：</h2><p>  1、 @JoinColumn与@Column标记一样，是用于注释表中的字段的。它的属性与@Column属性有很多相同之处，这里就不详细讲述。请读者参阅5.2.2小节中有关@Column属性的部分。   <br>  2、@JoinColumn与@Column相区别的是：@JoinColumn注释的是保存表与表之间关系的字段，它要标注在实体属性上。而@Column标注的是表中不包含表关系的字段。   <br>  3、与@Column标记一样，name属性是用来标识表中所对应的字段的名称。<br>  例如customer表中存在字段addr_id，标识的代码如下所示。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">    <span class="token annotation punctuation">@OneToOne</span> 
-
-      <span class="token annotation punctuation">@JoinColumn</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"addr_id"</span><span class="token punctuation">)</span>   
-
-      <span class="token keyword">public</span> <span class="token class-name">AddressEO</span> <span class="token function">getAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-
-    <span class="token keyword">return</span> address<span class="token punctuation">;</span>   
-
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<p>      若此时，不设置name的值，则在默认情况下，name的取值遵循以下规则：<br>        name=关联表的名称+“_”+ 关联表主键的字段名   <br>        例如，CustomerEO实体中，如果不指定name的值，默认将对应name=address_id；<br>        因为@JoinColumn注释在实体 AddressEO属性上，实体AddressEO对应的表名为“address”；表address的主键是“id”，所以此时对应的默认的字段名称为 “address_id”。         </p>
-<h2 id="提示："><a href="#提示：" class="headerlink" title="   提示："></a>   提示：</h2><p>        此规则只适用于与@OneToOne标记同时使用时。若与@ManyToOne或@ManyToMany标记同时使用时，将遵循其他的规则。<br>        1、默认情况下，关联的实体的主键一般是用来做外键的。但如果此时不想主键作为外键，则需要设置referencedColumnName属性。<br>        例如，将address表中增加一个字段“ref_id”，address表的建表SQL变为以下所示。   </p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">CREATE <span class="token class-name">TABLE</span> address <span class="token punctuation">(</span>
-
-    id <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> NOT <span class="token class-name">NULL</span> auto_increment<span class="token punctuation">,</span> 
-
-     ref_id <span class="token keyword">int</span> <span class="token keyword">int</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">)</span> <span class="token class-name">NOT</span> NULL<span class="token punctuation">,</span>   
-
-      province <span class="token function">varchar</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token punctuation">,</span>   
-
-      city <span class="token function">varchar</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> 
-
-        postcode <span class="token function">varchar</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token punctuation">,</span> 
-
-          detail <span class="token function">varchar</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span> <span class="token punctuation">,</span>   
-
-          <span class="token class-name">PRIMARY</span> KEY <span class="token punctuation">(</span>id<span class="token punctuation">)</span>   
-
-      <span class="token punctuation">)</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<p>        此时，通过customer表中的“address_id”字段关联的是address表中的“ref_id”，而“ref_id”并不是address表中的主键，则实体中标注如代码下所示。</p>
-<pre class="line-numbers language-java" data-language="java"><code class="language-java">          <span class="token annotation punctuation">@OneToOne</span> 
-
-            <span class="token annotation punctuation">@JoinColumn</span><span class="token punctuation">(</span>name <span class="token operator">=</span> <span class="token string">"address_id"</span><span class="token punctuation">,</span>referencedColumnName<span class="token operator">=</span><span class="token string">"ref_id"</span><span class="token punctuation">)</span>   
-
-            <span class="token keyword">public</span> <span class="token class-name">AddressEO</span> <span class="token function">getAddress</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-
-                       <span class="token keyword">return</span> address<span class="token punctuation">;</span> 
-
-                <span class="token punctuation">&#125;</span>    <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-
-<p>          属性referencedColumnName标注的是所关联表中的字段名，若不指定则使用的所关联表的主键字段名作为外键。<br>          JoinColumn标记不仅能够与@OneToOne使用，也可以@ManyToOne或@ManyToMany标记同时使用，它们所表示的含义不同。</p>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">小明童鞋</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://gadmi.cn/posts/392cfd56.html">https://gadmi.cn/posts/392cfd56.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://gadmi.cn" target="_blank">傻蛋日常呆</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%A1%86%E6%9E%B6/">框架</a></div><div class="post_share"><div class="social-share" data-image="https://img0.baidu.com/it/u=2862534777,914942650&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=889&amp;h=500" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/e5918a.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img1.baidu.com/it/u=3569420573,2690721824&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=889&amp;h=500" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/friend_404.gif'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">SpringMvc</div></div></a></div><div class="next-post pull-right"><a href="/posts/80ec54c.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img1.baidu.com/it/u=2656997690,163773951&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=889&amp;h=500" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/friend_404.gif'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Spring4</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/e5918a.html" title="SpringMvc"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img1.baidu.com/it/u=3569420573,2690721824&fm=253&fmt=auto&app=120&f=JPEG?w=889&h=500" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-18</div><div class="title">SpringMvc</div></div></a></div><div><a href="/posts/80ec54c.html" title="Spring4"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img1.baidu.com/it/u=2656997690,163773951&fm=253&fmt=auto&app=120&f=JPEG?w=889&h=500" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-12</div><div class="title">Spring4</div></div></a></div><div><a href="/posts/6c92115f.html" title="Spring"><img class="cover" src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img1.baidu.com/it/u=2656997690,163773951&fm=253&fmt=auto&app=120&f=JPEG?w=889&h=500" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-05</div><div class="title">Spring</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://s1.ax1x.com/2022/04/08/LC1FET.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">小明童鞋</div><div class="author-info__description">半山腰太挤了 要去山顶看看.</div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">12</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">1</div></a></div></div><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:2023179892@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">喜欢就要争取，不行就要努力</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JPA%E5%92%8CHibernate%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">1.</span> <span class="toc-text">JPA和Hibernate的关系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Entity"><span class="toc-number">2.</span> <span class="toc-text">Entity</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Table"><span class="toc-number">3.</span> <span class="toc-text">Table</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SecondaryTable"><span class="toc-number">4.</span> <span class="toc-text">SecondaryTable</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SecondaryTables"><span class="toc-number">5.</span> <span class="toc-text">SecondaryTables</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UniqueConstraint"><span class="toc-number">6.</span> <span class="toc-text">UniqueConstraint</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Column"><span class="toc-number">7.</span> <span class="toc-text">Column</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OneToOne"><span class="toc-number">8.</span> <span class="toc-text">OneToOne</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ManyToOne"><span class="toc-number">9.</span> <span class="toc-text">ManyToOne</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OneToMany"><span class="toc-number">10.</span> <span class="toc-text">OneToMany</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ManyToMany"><span class="toc-number">11.</span> <span class="toc-text">ManyToMany</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JoinColumn"><span class="toc-number">12.</span> <span class="toc-text">JoinColumn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JoinColumns"><span class="toc-number">13.</span> <span class="toc-text">JoinColumns</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IdClass"><span class="toc-number">14.</span> <span class="toc-text">IdClass</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#MapKey"><span class="toc-number">15.</span> <span class="toc-text">MapKey</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OrderBy"><span class="toc-number">16.</span> <span class="toc-text">OrderBy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PrimaryKeyJoinColumn"><span class="toc-number">17.</span> <span class="toc-text">PrimaryKeyJoinColumn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#PrimaryKeyJoinColumns"><span class="toc-number">18.</span> <span class="toc-text">PrimaryKeyJoinColumns</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Transient"><span class="toc-number">19.</span> <span class="toc-text">Transient</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Version"><span class="toc-number">20.</span> <span class="toc-text">Version</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Lob"><span class="toc-number">21.</span> <span class="toc-text">Lob</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JoinTable"><span class="toc-number">22.</span> <span class="toc-text">JoinTable</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TableGenerator"><span class="toc-number">23.</span> <span class="toc-text">TableGenerator</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SequenceGenerator"><span class="toc-number">24.</span> <span class="toc-text">SequenceGenerator</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DiscriminatorColumn"><span class="toc-number">25.</span> <span class="toc-text">DiscriminatorColumn</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hibernate%E9%AA%8C%E8%AF%81%E6%B3%A8%E8%A7%A3"><span class="toc-number">26.</span> <span class="toc-text">Hibernate验证注解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">27.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#JoinColumn-1"><span class="toc-number">27.1.</span> <span class="toc-text">@JoinColumn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E4%BD%BF%E7%94%A8-JoinColumn%E6%B3%A8%E9%87%8A%E6%97%B6%EF%BC%8C%E5%BA%94%E6%B3%A8%E6%84%8F%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="toc-number">27.2.</span> <span class="toc-text">在使用@JoinColumn注释时，应注意以下几个问题：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8F%90%E7%A4%BA%EF%BC%9A"><span class="toc-number">27.3.</span> <span class="toc-text">   提示：</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/5eaff132.html" title="分类和satic"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img1.baidu.com/it/u=357478560,514747300&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=658&amp;h=438" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/friend_404.gif'" alt="分类和satic"/></a><div class="content"><a class="title" href="/posts/5eaff132.html" title="分类和satic">分类和satic</a><time datetime="2022-05-08T06:44:34.643Z" title="发表于 2022-05-08 14:44:34">2022-05-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/d366874c.html" title="集合"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img1.baidu.com/it/u=357478560,514747300&amp;fm=253&amp;fmt=auto&amp;app=138&amp;f=JPEG?w=658&amp;h=438" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/friend_404.gif'" alt="集合"/></a><div class="content"><a class="title" href="/posts/d366874c.html" title="集合">集合</a><time datetime="2022-05-08T06:44:25.807Z" title="发表于 2022-05-08 14:44:25">2022-05-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/c4d5e200.html" title="imgs"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="/img/b.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/friend_404.gif'" alt="imgs"/></a><div class="content"><a class="title" href="/posts/c4d5e200.html" title="imgs">imgs</a><time datetime="2022-05-06T08:04:13.000Z" title="发表于 2022-05-06 16:04:13">2022-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/69e5fcbd.html" title="Shiro"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img1.baidu.com/it/u=2656997690,163773951&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=889&amp;h=500" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/friend_404.gif'" alt="Shiro"/></a><div class="content"><a class="title" href="/posts/69e5fcbd.html" title="Shiro">Shiro</a><time datetime="2022-05-05T14:50:29.403Z" title="发表于 2022-05-05 22:50:29">2022-05-05</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/6c92115f.html" title="Spring"><img src= "data:image/gif;base64,R0lGODdhAQABAPAAAMPDwwAAACwAAAAAAQABAAACAkQBADs=" data-lazy-src="https://img1.baidu.com/it/u=2656997690,163773951&amp;fm=253&amp;fmt=auto&amp;app=120&amp;f=JPEG?w=889&amp;h=500" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/zhaoze-jpg/Xianqi@main/img/friend_404.gif'" alt="Spring"/></a><div class="content"><a class="title" href="/posts/6c92115f.html" title="Spring">Spring</a><time datetime="2022-05-05T02:06:08.477Z" title="发表于 2022-05-05 10:06:08">2022-05-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2022  <i id="heartbeat" class="fa fas fa-heartbeat"></i> 小明童鞋</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div><head><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HCLonely/images@master/others/heartbeat.min.css"></head></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><script>var preloader = {
-  endLoading: () => {
-    document.body.style.overflow = 'auto';
-    document.getElementById('loading-box').classList.add("loaded")
-  },
-  initLoading: () => {
-    document.body.style.overflow = '';
-    document.getElementById('loading-box').classList.remove("loaded")
-
-  }
-}
-window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><script defer="defer" id="fluttering_ribbon" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="canvas_nest" defer="defer" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-nest.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
-POWERMODE.shake = true;
-POWERMODE.mobile = false;
-document.body.addEventListener('input', POWERMODE);
-</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/gh/metowolf/MetingJS@1.2/dist/Meting.min.js"></script><script src="https://cdn.jsdelivr.net/npm/pjax/pjax.min.js"></script><script>let pjaxSelectors = [
-  'title',
-  '#config-diff',
-  '#body-wrap',
-  '#rightside-config-hide',
-  '#rightside-config-show',
-  '.js-pjax'
-]
-
-if (false) {
-  pjaxSelectors.unshift('meta[property="og:image"]', 'meta[property="og:title"]', 'meta[property="og:url"]')
-}
-
-var pjax = new Pjax({
-  elements: 'a:not([target="_blank"])',
-  selectors: pjaxSelectors,
-  cacheBust: false,
-  analytics: false,
-  scrollRestoration: false
-})
-
-document.addEventListener('pjax:send', function () {
-
-  // removeEventListener scroll 
-  window.removeEventListener('scroll', window.tocScrollFn)
-  window.removeEventListener('scroll', scrollCollect)
-
-  typeof preloader === 'object' && preloader.initLoading()
-  
-  if (window.aplayers) {
-    for (let i = 0; i < window.aplayers.length; i++) {
-      if (!window.aplayers[i].options.fixed) {
-        window.aplayers[i].destroy()
-      }
-    }
-  }
-
-  typeof typed === 'object' && typed.destroy()
-
-  //reset readmode
-  const $bodyClassList = document.body.classList
-  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
-
-})
-
-document.addEventListener('pjax:complete', function () {
-  window.refreshFn()
-
-  document.querySelectorAll('script[data-pjax]').forEach(item => {
-    const newScript = document.createElement('script')
-    const content = item.text || item.textContent || item.innerHTML || ""
-    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
-    newScript.appendChild(document.createTextNode(content))
-    item.parentNode.replaceChild(newScript, item)
-  })
-
-  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
-
-  typeof chatBtnFn === 'function' && chatBtnFn()
-  typeof panguInit === 'function' && panguInit()
-
-  // google analytics
-  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
-
-  // baidu analytics
-  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
-
-  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
-
-  // Analytics
-  if (false) {
-    MtaH5.pgv()
-  }
-
-  // prismjs
-  typeof Prism === 'object' && Prism.highlightAll()
-
-  typeof preloader === 'object' && preloader.endLoading()
-})
-
-document.addEventListener('pjax:error', (e) => {
-  if (e.request.status === 404) {
-    pjax.loadUrl('/404.html')
-  }
-})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

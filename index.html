@@ -1,3 +1,4 @@
+
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
  <HEAD>
@@ -11,7 +12,7 @@
   height: 100%;
   padding: 0;
   margin: 0;
-  background: #000;
+  background: #fff;
 }
 canvas {
   position: absolute;
@@ -212,7 +213,9 @@ var ParticlePool = (function() {
     }
     context.closePath();
     // create the fill
-    context.fillStyle = '#ea80b0';
+    context.fillStyle = 'red';
+ 
+
     context.fill();
     // create the image
     var image = new Image();
